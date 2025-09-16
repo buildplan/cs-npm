@@ -11,11 +11,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Download the latest CrowdSec Nginx bouncer, and run the install script
+# The "CI_MODE=true" flag forces a non-interactive installation.
 RUN BOUNCER_URL=$(curl -s https://api.github.com/repos/crowdsecurity/cs-nginx-bouncer/releases/latest | grep "browser_download_url.*tgz" | cut -d '"' -f 4) && \
     curl -L $BOUNCER_URL -o /tmp/crowdsec-nginx-bouncer.tgz && \
     tar xzvf /tmp/crowdsec-nginx-bouncer.tgz -C /tmp/ && \
     cd /tmp/crowdsec-nginx-bouncer-v* && \
-    ./install.sh
+    CI_MODE=true ./install.sh
 
 
 # Stage 2: The Final Image
