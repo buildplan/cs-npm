@@ -217,5 +217,3 @@ docker exec crowdsec cscli bouncers list
 ```
 
 The output should show `npm-bouncer` in the list with a "validated" status. This may take a minute to update after the initial startup.
-
-```
