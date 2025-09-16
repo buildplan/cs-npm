@@ -4,9 +4,10 @@ FROM jc21/nginx-proxy-manager:latest AS builder
 # Switch to root to install packages and the bouncer
 USER root
 
-# Install dependencies needed ONLY for the build (curl)
+# Install dependencies needed ONLY for the build (curl and gettext)
 RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
+    gettext \
     && rm -rf /var/lib/apt/lists/*
 
 # Download the latest CrowdSec Nginx bouncer, and run the install script
