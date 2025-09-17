@@ -72,6 +72,8 @@ services:
     volumes:
       # Main data volume for NPM configs, users, SSL certs, etc.
       - ./npm/data:/data
+      # For letsencrypt certs
+      - ./npm/data/letsencrypt:/etc/letsencrypt
       # Maps the internal log directory to the host so CrowdSec can see it
       - ./npm/logs:/data/logs
       # Maps the bouncer configuration file into the container
